@@ -770,3 +770,5 @@ const Data = [
         src: require('../music/Charlie Puth - We Don\'t Talk Anymore (feat. Selena Gomez)[Official Video).mp3')
     }
 ]
+
+export default Data;
