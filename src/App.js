@@ -1,23 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import React, { useState } from "react";
+import Card from "./components/Card";
+const App = () => {
+  const [musicNumber, setMusicNumber] = useState(0)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+  <main >
+        <Card props={{ musicNumber, setMusicNumber }}/>
+  </main>
+
+
     </div>
   );
 }
