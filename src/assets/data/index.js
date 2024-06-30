@@ -768,7 +768,77 @@ const Data = [
         artist: 'Charlie Puth, Selena Gomez',
         thumbnail: require('../image/img01.jpeg'),
         src: require('../music/Charlie Puth - We Don\'t Talk Anymore (feat. Selena Gomez)[Official Video).mp3')
-    }
+    },
+    {
+        id: 111,
+        title: 'Just The Way You Are',
+        artist: 'Bruno Marse',
+        thumbnail: require('../image/img01.jpeg'),
+        src: require('../music/Just The Way You Are.mp3')
+    },
+    {
+        id: 112,
+        title: 'Shape of You',
+        artist: 'Ed sheeran',
+        thumbnail: require('../image/img01.jpeg'),
+        src: require('../music/Shape Of You.mp3')
+    },
+    {
+        id: 113,
+        title: 'BABY',
+        artist: 'Justin Bieber',
+        thumbnail: require('../image/img01.jpeg'),
+        src: require('../music/Baby.mp3')
+    },
+     {
+        id: 114,
+        title: 'Peaches',
+        artist: 'Justin Bieber',
+        thumbnail: require('../image/img01.jpeg'),
+        src: require('../music/Peaches.mp3')
+    },
+    {
+        id: 115,
+        title: 'SORRY',
+        artist: 'Justin Bieber',
+        thumbnail: require('../image/img01.jpeg'),
+        src: require('../music/Sorry.mp3')
+    },
+    {
+        id: 116,
+        title: 'Way Down We Go',
+        artist: 'KALEO',
+        thumbnail: require('../image/img01.jpeg'),
+        src: require('../music/Way down we go.mp3')
+    },
+    {
+        id: 117,
+        title: 'SUGAR',
+        artist: 'Maroon 5',
+        thumbnail: require('../image/img01.jpeg'),
+        src: require('../music/Sugar.mp3')
+    },
+    {
+        id: 118,
+        title: 'What Makes You Beautiful',
+        artist: 'One Direction',
+        thumbnail: require('../image/img01.jpeg'),
+        src: require('../music/what makes you beautifull.mp3')
+    },
+    {
+        id: 119,
+        title: 'I Ain\'t worried ',
+        artist: 'One Direction',
+        thumbnail: require('../image/img01.jpeg'),
+        src: require('../music/I aint worried.mp3')
+    },
+    {
+        id: 120,
+        title: 'Eenie Meenie',
+        artist: 'Justin Bieber',
+        thumbnail: require('../image/img01.jpeg'),
+        src: require('../music/Eenie Meenie.mp3')
+    },
 ]
 
 export default Data;
