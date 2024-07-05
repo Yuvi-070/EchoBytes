@@ -575,10 +575,10 @@ const Data = [
     },
     {
         id: 83,
-        title: 'Abhi Mujh Mein Kahin',
-        artist: 'Hrithik Roshan, Priyanka Chopra, Sonu Nigam',
+        title: 'As It Was',
+        artist: 'Harry Styles',
         thumbnail: require('../image/img01.jpeg'),
-        src: require('../music/Abhi Mujh Mein Kahin.mp3')
+        src: require('../music/As It Was.mp3')
     },
     {
         id: 84,
@@ -589,115 +589,115 @@ const Data = [
     },
     {
         id: 85,
-        title: 'Say You Wont Let Go',
-        artist: 'Say You Wont Let Go',
+        title: 'Calm Down',
+        artist: 'Selena Gomez',
         thumbnail: require('../image/img01.jpeg'),
-        src: require('../music/Say You Wont Let Go.mp3')
+        src: require('../music/Calm Down.mp3')
     },
     {
         id: 86,
-        title: 'Ocean Eyes',
-        artist: 'Ocean Eyes',
+        title: 'End Of Beginning',
+        artist: 'DJO',
         thumbnail: require('../image/img01.jpeg'),
-        src: require('../music/Ocean Eyes.mp3')
+        src: require('../music/End of Beginning.mp3')
     },
     {
         id: 87,
-        title: 'Unstoppable Sia (Lyrics)',
-        artist: 'Sia',
+        title: 'Goosebumps',
+        artist: 'Travis Scott',
         thumbnail: require('../image/img01.jpeg'),
-        src: require('../music/Unstoppable Sia (Lyrics).mp3')
+        src: require('../music/Goosebumps.mp3')
     },
     {
         id: 88,
-        title: 'Unstoppable - Sia (Clean)',
-        artist: 'Sia',
+        title: 'FE!N',
+        artist: 'Travis Scott',
         thumbnail: require('../image/img01.jpeg'),
-        src: require('../music/Unstoppable - Sia (Clean).mp3')
+        src: require('../music/FEIN.mp3')
     },
     {
         id: 89,
-        title: 'Something Just Like This)',
-        artist: 'The Chainsmokers ft. Coldplay',
+        title: 'HIGHEST IN THE ROOM',
+        artist: 'Travis Scott',
         thumbnail: require('../image/img01.jpeg'),
-        src: require('../music/Something Just Like This).mp3')
+        src: require('../music/HIGHEST IN THE ROOM.mp3')
     },
     {
         id: 90,
-        title: 'Pehli Nazar Mein Full Song Race Anil Kapoor, Saif Ali Khan Atif Aslam Pritam',
-        artist: 'Anil Kapoor, Saif Ali Khan, Atif Aslam, Pritam',
+        title: 'In Da Club',
+        artist: '50 CENT',
         thumbnail: require('../image/img01.jpeg'),
-        src: require('../music/Pehli Nazar Mein Full Song Race Anil Kapoor, Saif Ali Khan Atif Aslam Pritam.mp3')
+        src: require('../music/In Da Club.mp3')
     },
     {
         id: 91,
-        title: 'Hasi Ban Gaye Full Song | Hamari Adhuri Kahani | Arijit Singh',
-        artist: 'Arijit Singh',
+        title: 'Levitating',
+        artist: 'Dua Lipa',
         thumbnail: require('../image/img01.jpeg'),
-        src: require('../music/Hasi Ban Gaye Full Song | Hamari Adhuri Kahani | Arijit Singh.mp3')
+        src: require('../music/Levitating.mp3')
     },
     {
         id: 92,
-        title: 'I Like Me Better (Clean Version)',
-        artist: 'I Like Me Better',
+        title: 'Mood',
+        artist: '24k Gold',
         thumbnail: require('../image/img01.jpeg'),
-        src: require('../music/I Like Me Better (Clean Version).mp3')
+        src: require('../music/Mood.mp3')
     },
     {
         id: 93,
-        title: 'Shawn Mendes - Stitches (Official Video)',
-        artist: 'Shawn Mendes',
+        title: 'Naina',
+        artist: 'Diljeet Dosan',
         thumbnail: require('../image/img01.jpeg'),
-        src: require('../music/Shawn Mendes - Stitches (Official Video).mp3')
+        src: require('../music/Naina.mp3')
     },
     {
         id: 94,
-        title: 'Toosie Slide',
-        artist: 'Toosie Slide',
+        title: 'Perfect',
+        artist: 'Ed Sheeran',
         thumbnail: require('../image/img01.jpeg'),
-        src: require('../music/Toosie Slide.mp3')
+        src: require('../music/Perfect.mp3')
     },
     {
         id: 95,
-        title: 'Under The Influence',
-        artist: 'Under The Influence',
+        title: 'SICKO MODE',
+        artist: 'Travis Scott',
         thumbnail: require('../image/img01.jpeg'),
-        src: require('../music/Under The Influence.mp3')
+        src: require('../music/SICKO MODE.mp3')
     },
     {
         id: 96,
-        title: 'Travis Scott - CAN\'T SAY',
-        artist: 'Travis Scott',
+        title: 'Kun Faya Kun',
+        artist: 'Rockstar',
         thumbnail: require('../image/img01.jpeg'),
-        src: require('../music/Travis Scott - CAN\'T SAY.mp3')
+        src: require('../music/Kun Faya Kun Full Video Song Rockstar  Ranbir Kapoor  A.R. Rahman, Javed Ali, Mohit Chauhan.mp3')
     },
     {
         id: 97,
-        title: 'Mere Yaaraa Full Video Song | Sooryavanshi | Akshay Kumar | Katrina Kaif | Arijit Singh | Neeti M',
-        artist: 'Akshay Kumar, Katrina Kaif, Arijit Singh, Neeti M',
+        title: 'Slow Motion Angreza',
+        artist: 'Farahn Akthar',
         thumbnail: require('../image/img01.jpeg'),
-        src: require('../music/Mere Yaaraa Full Video Song | Sooryavanshi | Akshay Kumar | Katrina Kaif | Arijit Singh | Neeti M.mp3')
+        src: require('../music/Slow Motion Angreza.mp3')
     },
     {
         id: 98,
-        title: 'Dil Diyan Gallan - Tiger Zinda Hai Salman Khan Katrina Kaif Atif Aslam Vishal & Shekhar',
-        artist: 'Salman Khan, Katrina Kaif, Atif Aslam, Vishal & Shekhar',
+        title: 'Sunflower',
+        artist: 'SpiderMan',
         thumbnail: require('../image/img01.jpeg'),
-        src: require('../music/Dil Diyan Gallan - Tiger Zinda Hai Salman Khan Katrina Kaif Atif Aslam Vishal & Shekhar.mp3')
+        src: require('../music/Sunflower.mp3')
     },
     {
         id: 99,
-        title: 'Darasal - Full Video | Atif Aslam | Raabta | Sushant Singh Rajput, Kriti Sanon',
-        artist: 'Atif Aslam, Sushant Singh Rajput, Kriti Sanon',
+        title: 'The Box',
+        artist: 'Roddy Ricch',
         thumbnail: require('../image/img01.jpeg'),
-        src: require('../music/Darasal - Full Video | Atif Aslam | Raabta | Sushant Singh Rajput, Kriti Sanon.mp3')
+        src: require('../music/The Box.mp3')
     },
     {
         id: 100,
-        title: 'Jeene Laga Hoon Full Song Phata Poster Nikla Hero Shahid Kapoor Ileana D\'Cruz Atif Aslam',
-        artist: 'Shahid Kapoor, Ileana D\'Cruz, Atif Aslam',
+        title: 'Yimmy Yimmy',
+        artist: 'Shreya Ghoshal',
         thumbnail: require('../image/img01.jpeg'),
-        src: require('../music/Jeene Laga Hoon Full Song Phata Poster Nikla Hero Shahid Kapoor Ileana D\'Cruz Atif Aslam.mp3')
+        src: require('../music/Yimmy Yimmy.mp3')
     },
     {
         id: 101,
