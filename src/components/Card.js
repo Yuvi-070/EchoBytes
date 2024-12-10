@@ -1,13 +1,12 @@
 import React from 'react'
 import '../assets/css/card.css'
-// import data from '../assets/data/index'
 import musics from '../assets/data'
 const Card = ({ props: { musicNumber, setMusicNumber } }) => {
-    // console.log(data)
+    
     return (
         <div className="card">
 
-        
+
             <div className="nav">
                 <i className="material-icons">
                     expand_more
@@ -44,17 +43,23 @@ const Card = ({ props: { musicNumber, setMusicNumber } }) => {
                     skip_previous
                 </i>
                 
-                <i className="material-icons">
-                    play_arrow
-                </i>
+                <div className="play">
+                   <i className="material-icons" >play_arrow</i>
+                </div>
 
                 <i className="material-icons" id='next'>
                     skip_next
                 </i>
 
+            {/* VOLUMES */}
                 <i className="material-icons" >
                    volume_up
                 </i>
+                <div className='volume '>    
+                    <i className="material-icons">volume_up</i>
+                    <input type='range' min={0} max={100}/> 
+                    <span>50</span>
+                </div>
                 
                 
         </div>
