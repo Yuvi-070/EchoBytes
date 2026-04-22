@@ -57,10 +57,10 @@ const Data = [
     },
     {
         id: 9,
-        title: 'NADAAN PARINDE',
+        title: 'Nadaan Parinde',
         artist: 'A.R. Rahman, Mohit Chauhan',
         thumbnail: require('../image/img01.jpeg'),
-        src: require('../music/NADAAN PARINDE.mp3')
+        src: require('../music/Nadaan Parinde.mp3')
     },
     {
         id: 10,
@@ -557,7 +557,7 @@ const Data = [
         title: 'Nadaan Parinde',
         artist: 'Mohit Chauhan',
         thumbnail: require('../image/img01.jpeg'),
-        src: require('../music/NADAAN PARINDE.mp3')
+        src: require('../music/Nadaan Parinde.mp3')
     },
     {
         id: 81,

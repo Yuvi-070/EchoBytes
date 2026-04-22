@@ -1,16 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Card from "./components/Card";
+
 const App = () => {
-  const [musicNumber, setMusicNumber] = useState(0)
+  const [theme, setTheme] = useState(
+    () => localStorage.getItem('echobytes-theme') || 'dark'
+  );
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('echobytes-theme', theme);
+  }, [theme]);
+
   return (
     <div className="container">
-  <main >
-        <Card props={{ musicNumber, setMusicNumber }}/>
-  </main>
-
-
+      <main>
+        <Card theme={theme} setTheme={setTheme} />
+      </main>
     </div>
   );
-}
+};
 
 export default App;

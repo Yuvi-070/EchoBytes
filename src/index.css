@@ -1,34 +1,156 @@
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-*{
-  color: rgb(255, 255, 255);
+
+/* =============================================
+   CSS VARIABLES — DARK THEME (default)
+   ============================================= */
+:root,
+[data-theme="dark"] {
+  --bg:            #0d0d0d;
+  --card-bg:       #1a1a2e;
+  --card-border:   rgba(255, 255, 255, 0.08);
+  --text-primary:  #ffffff;
+  --text-secondary:#9a9ab0;
+  --accent:        #7c83e0;
+  --accent-hover:  #a8aefd;
+  --play-outer:    linear-gradient(160deg, #ffffff 0%, #c8c8d8 100%);
+  --play-inner:    linear-gradient(160deg, #8dadff 0%, #6e72a3 100%);
+  --progress-track:#2e2e4a;
+  --progress-thumb:#7c83e0;
+  --volume-bg:     #22223a;
+  --volume-border: #3a3a5a;
+  --shadow:        0 8px 40px rgba(0, 0, 0, 0.6);
+  --upload-bg:     #22223a;
+  --upload-hover:  #2e2e50;
+  --playlist-hover:#252540;
+  --playlist-active:#2e2e60;
+  --scrollbar-bg:  #1a1a2e;
+  --scrollbar-thumb:#3a3a6a;
+}
+
+/* =============================================
+   LIGHT THEME
+   ============================================= */
+[data-theme="light"] {
+  --bg:            #f0f2f8;
+  --card-bg:       #ffffff;
+  --card-border:   rgba(0, 0, 0, 0.08);
+  --text-primary:  #1a1a2e;
+  --text-secondary:#6b6b8a;
+  --accent:        #1db954;
+  --accent-hover:  #1acd5a;
+  --play-outer:    linear-gradient(160deg, #e8e8e8 0%, #c0c0c0 100%);
+  --play-inner:    linear-gradient(160deg, #1db954 0%, #169c45 100%);
+  --progress-track:#dde0eb;
+  --progress-thumb:#1db954;
+  --volume-bg:     #f5f5fa;
+  --volume-border: #dde0eb;
+  --shadow:        0 8px 40px rgba(0, 0, 0, 0.12);
+  --upload-bg:     #f0f2f8;
+  --upload-hover:  #e4e8f0;
+  --playlist-hover:#f5f6ff;
+  --playlist-active:#eaeeff;
+  --scrollbar-bg:  #f0f2f8;
+  --scrollbar-thumb:#c0c8e0;
+}
+
+/* =============================================
+   SYNTHWAVE THEME
+   ============================================= */
+[data-theme="synthwave"] {
+  --bg:            #0a0015;
+  --card-bg:       #16002e;
+  --card-border:   rgba(255, 113, 206, 0.25);
+  --text-primary:  #ff71ce;
+  --text-secondary:#b967ff;
+  --accent:        #01cdfe;
+  --accent-hover:  #05ffa1;
+  --play-outer:    linear-gradient(160deg, #ff71ce 0%, #b967ff 100%);
+  --play-inner:    linear-gradient(160deg, #01cdfe 0%, #05ffa1 100%);
+  --progress-track:#3d0070;
+  --progress-thumb:#01cdfe;
+  --volume-bg:     #1e004a;
+  --volume-border: #ff71ce;
+  --shadow:        0 8px 40px rgba(255, 113, 206, 0.25);
+  --upload-bg:     #1e004a;
+  --upload-hover:  #2a0060;
+  --playlist-hover:#200050;
+  --playlist-active:#2e006a;
+  --scrollbar-bg:  #16002e;
+  --scrollbar-thumb:#ff71ce;
+}
+
+/* =============================================
+   GLOBAL RESET & BASE
+   ============================================= */
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Playfair Display", serif;
+  font-family: "Poppins", "Playfair Display", serif;
 }
 
-body{
+body {
   width: 100%;
   min-height: 100vh;
-  background: #000;
+  background: var(--bg);
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: background 0.3s ease;
 }
 
-i{
+i {
   cursor: pointer;
   user-select: none;
-
 }
-ul{
+
+ul {
   list-style: none;
 }
-main{
-  width: 360px;;
-  border-radius: 15px;
-  border: 1px solid rgb(255, 255, 255, 0.1);
-  box-shadow: 0 0 20px rgb(7, 15, 15, 0.5);
+
+/* =============================================
+   CONTAINER / MAIN WRAPPER
+   ============================================= */
+.container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--bg);
+  transition: background 0.3s ease;
+}
+
+main {
+  width: 380px;
+  border-radius: 20px;
+  border: 1px solid var(--card-border);
+  box-shadow: var(--shadow);
   position: relative;
-  backdrop-filter: blur(3px);
+  overflow: hidden;
+  background: var(--card-bg);
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* =============================================
+   RESPONSIVE — MOBILE
+   ============================================= */
+@media (max-width: 420px) {
+  .container {
+    align-items: flex-start;
+  }
+
+  main {
+    width: 100%;
+    min-height: 100vh;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+}
+
+@media (min-width: 421px) and (max-width: 600px) {
+  main {
+    width: 95%;
+  }
 }
