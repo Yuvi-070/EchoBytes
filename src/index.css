@@ -1,106 +1,145 @@
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap");
 
 /* =============================================
    CSS VARIABLES — DARK THEME (default)
    ============================================= */
 :root,
 [data-theme="dark"] {
-  --bg:            #0d0d0d;
-  --card-bg:       #1a1a2e;
-  --card-border:   rgba(255, 255, 255, 0.08);
-  --text-primary:  #ffffff;
-  --text-secondary:#9a9ab0;
-  --accent:        #7c83e0;
-  --accent-hover:  #a8aefd;
-  --play-outer:    linear-gradient(160deg, #ffffff 0%, #c8c8d8 100%);
-  --play-inner:    linear-gradient(160deg, #8dadff 0%, #6e72a3 100%);
-  --progress-track:#2e2e4a;
-  --progress-thumb:#7c83e0;
-  --volume-bg:     #22223a;
-  --volume-border: #3a3a5a;
-  --shadow:        0 8px 40px rgba(0, 0, 0, 0.6);
-  --upload-bg:     #22223a;
-  --upload-hover:  #2e2e50;
-  --playlist-hover:#252540;
-  --playlist-active:#2e2e60;
-  --scrollbar-bg:  #1a1a2e;
-  --scrollbar-thumb:#3a3a6a;
+  --bg:               #080812;
+  --bg-grad:          radial-gradient(ellipse 80% 60% at 20% 50%, rgba(108, 99, 255, 0.14) 0%, transparent 60%),
+                      radial-gradient(ellipse 60% 50% at 80% 20%, rgba(168, 85, 247, 0.09) 0%, transparent 60%),
+                      radial-gradient(ellipse 70% 60% at 60% 85%, rgba(99, 102, 241, 0.07) 0%, transparent 60%);
+  --card-bg:          rgba(14, 14, 32, 0.84);
+  --card-border:      rgba(255, 255, 255, 0.06);
+  --text-primary:     #eeeeff;
+  --text-secondary:   #8888aa;
+  --accent:           #7c6fff;
+  --accent-2:         #b06eff;
+  --accent-hover:     #9d94ff;
+  --accent-grad:      linear-gradient(135deg, #7c6fff 0%, #b06eff 100%);
+  --play-outer:       linear-gradient(145deg, #8a7fff 0%, #c07aff 100%);
+  --play-inner:       linear-gradient(145deg, #6a5fe8 0%, #9f5ae0 100%);
+  --progress-track:   rgba(255, 255, 255, 0.08);
+  --progress-thumb:   #b06eff;
+  --shadow:           0 24px 64px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.04);
+  --shadow-accent:    0 8px 32px rgba(124, 111, 255, 0.4);
+  --upload-bg:        rgba(255, 255, 255, 0.04);
+  --upload-hover:     rgba(124, 111, 255, 0.12);
+  --playlist-hover:   rgba(255, 255, 255, 0.04);
+  --playlist-active:  rgba(124, 111, 255, 0.16);
+  --scrollbar-bg:     rgba(255, 255, 255, 0.02);
+  --scrollbar-thumb:  rgba(124, 111, 255, 0.45);
+  --glass-blur:       blur(24px) saturate(180%);
+  --art-glow:         0 0 40px rgba(124, 111, 255, 0.5), 0 0 80px rgba(176, 110, 255, 0.25);
+  --art-ring:         rgba(124, 111, 255, 0.4);
 }
 
 /* =============================================
    LIGHT THEME
    ============================================= */
 [data-theme="light"] {
-  --bg:            #f0f2f8;
-  --card-bg:       #ffffff;
-  --card-border:   rgba(0, 0, 0, 0.08);
-  --text-primary:  #1a1a2e;
-  --text-secondary:#6b6b8a;
-  --accent:        #1db954;
-  --accent-hover:  #1acd5a;
-  --play-outer:    linear-gradient(160deg, #e8e8e8 0%, #c0c0c0 100%);
-  --play-inner:    linear-gradient(160deg, #1db954 0%, #169c45 100%);
-  --progress-track:#dde0eb;
-  --progress-thumb:#1db954;
-  --volume-bg:     #f5f5fa;
-  --volume-border: #dde0eb;
-  --shadow:        0 8px 40px rgba(0, 0, 0, 0.12);
-  --upload-bg:     #f0f2f8;
-  --upload-hover:  #e4e8f0;
-  --playlist-hover:#f5f6ff;
-  --playlist-active:#eaeeff;
-  --scrollbar-bg:  #f0f2f8;
-  --scrollbar-thumb:#c0c8e0;
+  --bg:               #f2f4ff;
+  --bg-grad:          radial-gradient(ellipse 80% 60% at 30% 40%, rgba(99, 102, 241, 0.09) 0%, transparent 60%),
+                      radial-gradient(ellipse 60% 50% at 75% 70%, rgba(14, 165, 233, 0.07) 0%, transparent 60%);
+  --card-bg:          rgba(255, 255, 255, 0.90);
+  --card-border:      rgba(0, 0, 0, 0.06);
+  --text-primary:     #1a1b2e;
+  --text-secondary:   #6b7280;
+  --accent:           #6366f1;
+  --accent-2:         #0ea5e9;
+  --accent-hover:     #4f46e5;
+  --accent-grad:      linear-gradient(135deg, #6366f1 0%, #0ea5e9 100%);
+  --play-outer:       linear-gradient(145deg, #818cf8 0%, #38bdf8 100%);
+  --play-inner:       linear-gradient(145deg, #6366f1 0%, #0ea5e9 100%);
+  --progress-track:   rgba(0, 0, 0, 0.08);
+  --progress-thumb:   #6366f1;
+  --shadow:           0 24px 64px rgba(99, 102, 241, 0.14), 0 4px 24px rgba(0, 0, 0, 0.06);
+  --shadow-accent:    0 8px 32px rgba(99, 102, 241, 0.3);
+  --upload-bg:        rgba(99, 102, 241, 0.05);
+  --upload-hover:     rgba(99, 102, 241, 0.1);
+  --playlist-hover:   rgba(99, 102, 241, 0.05);
+  --playlist-active:  rgba(99, 102, 241, 0.1);
+  --scrollbar-bg:     rgba(0, 0, 0, 0.03);
+  --scrollbar-thumb:  rgba(99, 102, 241, 0.35);
+  --glass-blur:       blur(24px) saturate(180%);
+  --art-glow:         0 0 40px rgba(99, 102, 241, 0.25), 0 20px 40px rgba(0, 0, 0, 0.1);
+  --art-ring:         rgba(99, 102, 241, 0.4);
 }
 
 /* =============================================
    SYNTHWAVE THEME
    ============================================= */
 [data-theme="synthwave"] {
-  --bg:            #0a0015;
-  --card-bg:       #16002e;
-  --card-border:   rgba(255, 113, 206, 0.25);
-  --text-primary:  #ff71ce;
-  --text-secondary:#b967ff;
-  --accent:        #01cdfe;
-  --accent-hover:  #05ffa1;
-  --play-outer:    linear-gradient(160deg, #ff71ce 0%, #b967ff 100%);
-  --play-inner:    linear-gradient(160deg, #01cdfe 0%, #05ffa1 100%);
-  --progress-track:#3d0070;
-  --progress-thumb:#01cdfe;
-  --volume-bg:     #1e004a;
-  --volume-border: #ff71ce;
-  --shadow:        0 8px 40px rgba(255, 113, 206, 0.25);
-  --upload-bg:     #1e004a;
-  --upload-hover:  #2a0060;
-  --playlist-hover:#200050;
-  --playlist-active:#2e006a;
-  --scrollbar-bg:  #16002e;
-  --scrollbar-thumb:#ff71ce;
+  --bg:               #060010;
+  --bg-grad:          radial-gradient(ellipse 80% 60% at 20% 50%, rgba(255, 121, 198, 0.16) 0%, transparent 55%),
+                      radial-gradient(ellipse 70% 60% at 80% 25%, rgba(189, 147, 249, 0.13) 0%, transparent 55%),
+                      radial-gradient(ellipse 60% 50% at 55% 90%, rgba(0, 212, 255, 0.09) 0%, transparent 55%);
+  --card-bg:          rgba(14, 0, 36, 0.86);
+  --card-border:      rgba(255, 121, 198, 0.22);
+  --text-primary:     #ff79c6;
+  --text-secondary:   #bd93f9;
+  --accent:           #00d4ff;
+  --accent-2:         #ff79c6;
+  --accent-hover:     #50fa7b;
+  --accent-grad:      linear-gradient(135deg, #ff79c6 0%, #bd93f9 50%, #00d4ff 100%);
+  --play-outer:       linear-gradient(145deg, #ff79c6 0%, #bd93f9 100%);
+  --play-inner:       linear-gradient(145deg, #00d4ff 0%, #50fa7b 100%);
+  --progress-track:   rgba(189, 147, 249, 0.16);
+  --progress-thumb:   #00d4ff;
+  --shadow:           0 24px 64px rgba(255, 121, 198, 0.22), 0 0 80px rgba(0, 212, 255, 0.1);
+  --shadow-accent:    0 0 30px rgba(0, 212, 255, 0.6), 0 0 60px rgba(255, 121, 198, 0.3);
+  --upload-bg:        rgba(255, 121, 198, 0.06);
+  --upload-hover:     rgba(255, 121, 198, 0.14);
+  --playlist-hover:   rgba(255, 121, 198, 0.06);
+  --playlist-active:  rgba(189, 147, 249, 0.16);
+  --scrollbar-bg:     rgba(255, 121, 198, 0.05);
+  --scrollbar-thumb:  rgba(0, 212, 255, 0.55);
+  --glass-blur:       blur(24px) saturate(200%);
+  --art-glow:         0 0 50px rgba(0, 212, 255, 0.6), 0 0 100px rgba(255, 121, 198, 0.35);
+  --art-ring:         rgba(0, 212, 255, 0.5);
 }
 
 /* =============================================
    GLOBAL RESET & BASE
    ============================================= */
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", "Playfair Display", serif;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
+  font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   width: 100%;
   min-height: 100vh;
   background: var(--bg);
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: background 0.3s ease;
+  transition: background 0.45s ease;
+  overflow-x: hidden;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 i {
-  cursor: pointer;
   user-select: none;
 }
 
@@ -117,25 +156,45 @@ ul {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+}
+
+.container::before {
+  content: '';
+  position: fixed;
+  inset: 0;
   background: var(--bg);
-  transition: background 0.3s ease;
+  z-index: -2;
+  transition: background 0.45s ease;
+}
+
+.container::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: var(--bg-grad);
+  z-index: -1;
+  transition: background 0.45s ease;
+  pointer-events: none;
 }
 
 main {
-  width: 380px;
-  border-radius: 20px;
+  width: 400px;
+  border-radius: 28px;
   border: 1px solid var(--card-border);
   box-shadow: var(--shadow);
   position: relative;
   overflow: hidden;
   background: var(--card-bg);
-  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  transition: background 0.45s ease, border-color 0.45s ease, box-shadow 0.45s ease;
 }
 
 /* =============================================
    RESPONSIVE — MOBILE
    ============================================= */
-@media (max-width: 420px) {
+@media (max-width: 460px) {
   .container {
     align-items: flex-start;
   }
@@ -143,14 +202,16 @@ main {
   main {
     width: 100%;
     min-height: 100vh;
+    min-height: 100svh;
     border-radius: 0;
     border-left: none;
     border-right: none;
+    border-top: none;
   }
 }
 
-@media (min-width: 421px) and (max-width: 600px) {
+@media (min-width: 461px) and (max-width: 620px) {
   main {
-    width: 95%;
+    width: 96%;
   }
 }

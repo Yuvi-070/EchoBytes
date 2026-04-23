@@ -3,12 +3,28 @@
    ============================================= */
 .card {
   width: 100%;
-  padding: 20px 24px 16px;
   color: var(--text-primary);
-  background: var(--card-bg);
-  transition: background 0.3s ease, color 0.3s ease;
   display: flex;
   flex-direction: column;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  transition: color 0.45s ease;
+}
+
+/* =============================================
+   AMBIENT ART BACKGROUND
+   ============================================= */
+.art-ambient {
+  position: absolute;
+  inset: -40%;
+  background-size: cover;
+  background-position: center;
+  filter: blur(70px) saturate(180%) brightness(0.28);
+  opacity: 0.8;
+  z-index: -1;
+  transition: background-image 1s ease;
+  pointer-events: none;
 }
 
 /* =============================================
@@ -19,30 +35,47 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 4px;
+  padding: 20px 20px 14px;
 }
 
-.card .nav .nav-icon {
+.card .nav .nav-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.07);
   color: var(--text-secondary);
-  font-size: 1.5rem;
-  transition: color 0.2s;
-  min-width: 32px;
-  min-height: 32px;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background 0.2s, color 0.2s, transform 0.15s;
+  flex-shrink: 0;
 }
 
-.card .nav .nav-icon:hover {
+.card .nav .nav-btn:hover {
+  background: rgba(255, 255, 255, 0.11);
   color: var(--accent);
+  transform: scale(1.08);
+}
+
+.card .nav .nav-btn:active {
+  transform: scale(0.91);
+}
+
+.card .nav .nav-btn .material-icons {
+  font-size: 1.2rem;
 }
 
 .card .nav .nav-title {
-  font-size: 0.75rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
   color: var(--text-secondary);
   text-align: center;
   flex: 1;
-  padding: 0 8px;
+  padding: 0 10px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -52,25 +85,29 @@
    THEME SELECT
    ============================================= */
 .theme-select {
-  background: var(--upload-bg);
+  appearance: none;
+  -webkit-appearance: none;
+  background: rgba(255, 255, 255, 0.07);
   color: var(--text-primary);
   border: 1px solid var(--card-border);
-  border-radius: 8px;
-  padding: 4px 6px;
-  font-size: 0.7rem;
+  border-radius: 20px;
+  padding: 5px 10px;
+  font-size: 0.68rem;
+  font-weight: 500;
+  font-family: inherit;
   cursor: pointer;
   outline: none;
   transition: background 0.2s, border-color 0.2s;
-  min-width: 100px;
 }
 
 .theme-select:hover {
   border-color: var(--accent);
+  background: rgba(255, 255, 255, 0.11);
 }
 
 .theme-select option {
-  background: var(--card-bg);
-  color: var(--text-primary);
+  background: #1a1a2e;
+  color: #fff;
 }
 
 /* =============================================
@@ -78,28 +115,39 @@
    ============================================= */
 .card .img {
   width: 100%;
-  height: 240px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 12px 0 8px;
+  padding: 8px 20px 18px;
 }
 
-.card .img img {
-  width: 190px;
-  height: 190px;
+.art-ring {
+  position: relative;
+  border-radius: 50%;
+  padding: 4px;
+  background: var(--accent-grad);
+  box-shadow: var(--art-glow);
+  transition: box-shadow 0.5s ease, background 0.5s ease;
+}
+
+.art-ring.paused {
+  background: rgba(255, 255, 255, 0.09);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+}
+
+.art-ring img {
+  width: 200px;
+  height: 200px;
   object-fit: cover;
   border-radius: 50%;
-  border: 3px solid var(--card-border);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
-  transition: box-shadow 0.3s;
+  display: block;
   animation-play-state: paused;
+  transition: opacity 0.4s;
 }
 
-.card .img img.spinning {
-  animation: spin 12s linear infinite;
+.art-ring img.spinning {
+  animation: spin 16s linear infinite;
   animation-play-state: running;
-  box-shadow: 0 0 28px var(--accent);
 }
 
 @keyframes spin {
@@ -113,71 +161,86 @@
 .card .details {
   width: 100%;
   text-align: center;
-  padding: 0 8px;
+  padding: 0 24px 6px;
 }
 
 .card .details .title {
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 1.08rem;
+  font-weight: 700;
   color: var(--text-primary);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  line-height: 1.4;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
 }
 
 .card .details .artist {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
+  font-weight: 500;
   color: var(--text-secondary);
-  margin-top: 2px;
+  margin-top: 3px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  letter-spacing: 0.01em;
 }
 
 /* =============================================
    PROGRESS BAR
    ============================================= */
-.card .progress {
-  margin-top: 16px;
-  padding: 0 2px;
+.card .progress-wrap {
+  padding: 14px 22px 0;
 }
 
-.card .progress input[type="range"] {
+.card .progress-wrap input[type="range"] {
   width: 100%;
   height: 4px;
   -webkit-appearance: none;
   appearance: none;
-  background: var(--progress-track);
   border-radius: 4px;
   cursor: pointer;
   outline: none;
-  transition: background 0.3s;
+  background-color: var(--progress-track);
+  background: linear-gradient(
+    to right,
+    var(--progress-thumb) 0%,
+    var(--progress-thumb) var(--val, 0%),
+    var(--progress-track) var(--val, 0%),
+    var(--progress-track) 100%
+  );
+  transition: height 0.15s;
 }
 
-.card .progress input[type="range"]::-webkit-slider-thumb {
+.card .progress-wrap input[type="range"]:hover {
+  height: 6px;
+}
+
+.card .progress-wrap input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
-  background: var(--progress-thumb);
+  background: #fff;
   cursor: pointer;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
-  transition: transform 0.1s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45), 0 0 0 2px var(--progress-thumb);
+  transition: transform 0.15s, box-shadow 0.15s;
 }
 
-.card .progress input[type="range"]::-webkit-slider-thumb:hover {
+.card .progress-wrap input[type="range"]::-webkit-slider-thumb:hover {
   transform: scale(1.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5), 0 0 0 3px var(--progress-thumb);
 }
 
-.card .progress input[type="range"]::-moz-range-thumb {
-  width: 14px;
-  height: 14px;
+.card .progress-wrap input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
-  background: var(--progress-thumb);
+  background: #fff;
   cursor: pointer;
-  border: none;
+  border: 2px solid var(--progress-thumb);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 /* =============================================
@@ -187,9 +250,11 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  font-size: 0.72rem;
+  padding: 5px 23px 0;
+  font-size: 0.68rem;
+  font-weight: 500;
   color: var(--text-secondary);
-  margin-top: 6px;
+  letter-spacing: 0.02em;
 }
 
 /* =============================================
@@ -200,183 +265,233 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 16px 0 8px;
-  position: relative;
+  padding: 14px 14px 2px;
 }
 
-.card .controls .ctrl-icon {
+.card .controls .ctrl-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: none;
+  border: none;
   color: var(--text-secondary);
-  font-size: 1.3rem;
-  min-width: 36px;
-  min-height: 36px;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  transition: color 0.2s, background 0.2s;
+  transition: color 0.2s, background 0.2s, transform 0.15s;
+  flex-shrink: 0;
 }
 
-.card .controls .ctrl-icon:hover {
+.card .controls .ctrl-btn:hover {
+  color: var(--accent);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.card .controls .ctrl-btn:active {
+  transform: scale(0.88);
+}
+
+.card .controls .ctrl-btn .material-icons {
+  font-size: 1.3rem;
+}
+
+.card .controls .ctrl-btn.ctrl-skip .material-icons {
+  font-size: 2.1rem;
+}
+
+.card .controls .ctrl-btn.active {
   color: var(--accent);
 }
 
-.card .controls .ctrl-skip {
-  font-size: 2.2rem;
-}
-
 /* Play button */
-.card .controls .play {
-  width: 3.4rem;
-  height: 3.4rem;
+.card .controls .play-btn {
+  width: 62px;
+  height: 62px;
   background: var(--play-outer);
   border-radius: 50%;
+  border: none;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   cursor: pointer;
-  transition: transform 0.15s, box-shadow 0.2s;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s;
+  box-shadow: var(--shadow-accent);
+  flex-shrink: 0;
 }
 
-.card .controls .play:hover {
-  transform: scale(1.08);
-  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.45);
-}
-
-.card .controls .play:active {
-  transform: scale(0.97);
-}
-
-.card .controls .play::before {
+.card .controls .play-btn::before {
   content: '';
   position: absolute;
-  height: 2.6rem;
-  width: 2.6rem;
+  inset: 5px;
   border-radius: 50%;
   background: var(--play-inner);
 }
 
-.card .controls .play i {
+.card .controls .play-btn:hover {
+  transform: scale(1.1);
+  box-shadow: var(--shadow-accent), 0 14px 32px rgba(0, 0, 0, 0.4);
+}
+
+.card .controls .play-btn:active {
+  transform: scale(0.93);
+}
+
+.card .controls .play-btn .material-icons {
   color: #fff;
-  position: absolute;
-  font-size: 1.6rem;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 1;
+  font-size: 1.85rem;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
 }
 
 /* =============================================
-   VOLUME PANEL
+   VOLUME ROW
    ============================================= */
-.card .controls .volume {
+.card .volume-row {
   width: 100%;
-  height: 52px;
-  background: var(--volume-bg);
-  position: absolute;
-  visibility: hidden;
-  opacity: 0;
-  bottom: -8px;
-  left: 0;
-  border-radius: 12px;
-  border: 1px solid var(--volume-border);
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 0 16px;
-  z-index: 10;
-  transition: opacity 0.2s ease, visibility 0.2s ease, bottom 0.2s ease;
   gap: 10px;
-  transform: translateY(100%);
+  padding: 6px 20px 18px;
 }
 
-.card .controls .volume.show {
-  visibility: visible;
-  opacity: 1;
-  bottom: -60px;
-  transform: translateY(0);
-}
-
-.card .controls .volume i {
+.card .volume-row .vol-icon {
   color: var(--text-secondary);
   font-size: 1.1rem;
   flex-shrink: 0;
+  cursor: default;
+  transition: color 0.2s;
+  user-select: none;
 }
 
-.card .controls .volume span {
-  color: var(--text-secondary);
-  font-size: 0.75rem;
-  min-width: 28px;
-  text-align: right;
-  flex-shrink: 0;
-}
-
-.card .controls .volume input[type="range"] {
+.card .volume-row input[type="range"] {
   flex: 1;
-  height: 4px;
+  height: 3px;
   -webkit-appearance: none;
   appearance: none;
-  background: var(--progress-track);
-  border-radius: 4px;
+  border-radius: 3px;
   cursor: pointer;
   outline: none;
+  background-color: var(--progress-track);
+  background: linear-gradient(
+    to right,
+    var(--progress-thumb) 0%,
+    var(--progress-thumb) var(--val, 70%),
+    var(--progress-track) var(--val, 70%),
+    var(--progress-track) 100%
+  );
+  transition: height 0.15s;
 }
 
-.card .controls .volume input[type="range"]::-webkit-slider-thumb {
+.card .volume-row input[type="range"]:hover {
+  height: 5px;
+}
+
+.card .volume-row input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background: var(--progress-thumb);
+  background: #fff;
   cursor: pointer;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4), 0 0 0 2px var(--progress-thumb);
+  transition: transform 0.15s;
 }
 
-.card .controls .volume input[type="range"]::-moz-range-thumb {
+.card .volume-row input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.3);
+}
+
+.card .volume-row input[type="range"]::-moz-range-thumb {
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background: var(--progress-thumb);
+  background: #fff;
+  border: 2px solid var(--progress-thumb);
   cursor: pointer;
-  border: none;
+}
+
+.card .volume-row .vol-pct {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  min-width: 30px;
+  text-align: right;
+  letter-spacing: 0.02em;
 }
 
 /* =============================================
    UPLOAD SECTION
    ============================================= */
 .card .upload-section {
-  margin-top: 16px;
+  padding: 4px 20px 22px;
   display: flex;
   justify-content: center;
-  padding-bottom: 4px;
 }
 
 .card .upload-btn {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   background: var(--upload-bg);
   color: var(--text-secondary);
   border: 1px solid var(--card-border);
-  border-radius: 20px;
-  padding: 8px 20px;
+  border-radius: 24px;
+  padding: 10px 26px;
   font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.15s;
+  transition: color 0.2s, border-color 0.2s, transform 0.15s, box-shadow 0.2s;
   font-family: inherit;
+  position: relative;
+  overflow: hidden;
+}
+
+.card .upload-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--accent-grad);
+  opacity: 0;
+  transition: opacity 0.25s;
 }
 
 .card .upload-btn:hover {
-  background: var(--upload-hover);
-  color: var(--accent);
-  border-color: var(--accent);
-  transform: translateY(-1px);
+  color: #fff;
+  border-color: transparent;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.card .upload-btn:hover::before {
+  opacity: 1;
 }
 
 .card .upload-btn:active {
-  transform: translateY(0);
+  transform: scale(0.95) translateY(0);
 }
 
-.card .upload-btn i {
-  font-size: 1.1rem;
+.card .upload-btn .material-icons,
+.card .upload-btn span {
+  position: relative;
+  z-index: 1;
+}
+
+.card .upload-btn .material-icons {
+  font-size: 1.15rem;
+}
+
+/* =============================================
+   SECTION DIVIDER
+   ============================================= */
+.section-divider {
+  height: 1px;
+  background: var(--card-border);
+  margin: 0 20px;
 }
 
 /* =============================================
@@ -384,15 +499,22 @@
    ============================================= */
 .card .playlist {
   width: 100%;
-  max-height: 420px;
-  overflow-y: auto;
-  margin: 8px 0;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.42s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
   scrollbar-width: thin;
   scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-bg);
 }
 
+.card .playlist.visible {
+  max-height: 500px;
+  opacity: 1;
+  overflow-y: auto;
+}
+
 .card .playlist::-webkit-scrollbar {
-  width: 4px;
+  width: 3px;
 }
 
 .card .playlist::-webkit-scrollbar-track {
@@ -401,25 +523,29 @@
 
 .card .playlist::-webkit-scrollbar-thumb {
   background: var(--scrollbar-thumb);
-  border-radius: 4px;
+  border-radius: 3px;
 }
 
 .card .playlist ul {
-  padding: 0;
+  padding: 8px 12px 4px;
 }
 
 .card .playlist .playlist-item {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 8px;
-  border-radius: 8px;
+  gap: 11px;
+  padding: 9px 10px;
+  border-radius: 12px;
   cursor: pointer;
-  transition: background 0.15s;
+  transition: background 0.15s, transform 0.12s;
 }
 
 .card .playlist .playlist-item:hover {
   background: var(--playlist-hover);
+}
+
+.card .playlist .playlist-item:active {
+  transform: scale(0.98);
 }
 
 .card .playlist .playlist-item.active {
@@ -428,13 +554,24 @@
 
 .card .playlist .playlist-item.active .playlist-title {
   color: var(--accent);
+  font-weight: 600;
 }
 
 .card .playlist .playlist-num {
-  font-size: 0.7rem;
+  font-size: 0.66rem;
+  font-weight: 500;
   color: var(--text-secondary);
-  min-width: 22px;
-  text-align: right;
+  min-width: 18px;
+  text-align: center;
+}
+
+.card .playlist .playlist-thumb {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .card .playlist .playlist-info {
@@ -444,88 +581,85 @@
 
 .card .playlist .playlist-title {
   display: block;
-  font-size: 0.82rem;
-  color: var(--text-primary);
+  font-size: 0.8rem;
   font-weight: 500;
+  color: var(--text-primary);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  line-height: 1.3;
 }
 
 .card .playlist .playlist-artist {
   display: block;
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   color: var(--text-secondary);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin-top: 2px;
 }
 
 .card .playlist .playlist-playing {
   color: var(--accent);
-  font-size: 1rem;
+  font-size: 0.95rem;
   flex-shrink: 0;
+  animation: eq-bounce 0.7s ease-in-out infinite alternate;
+}
+
+@keyframes eq-bounce {
+  from { transform: scaleY(0.65); opacity: 0.7; }
+  to   { transform: scaleY(1);    opacity: 1;   }
 }
 
 .card .playlist .playlist-local {
   color: var(--text-secondary);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   flex-shrink: 0;
-  opacity: 0.6;
+  opacity: 0.5;
 }
 
 /* =============================================
    RESPONSIVE — MOBILE
    ============================================= */
-@media (max-width: 420px) {
-  .card {
-    padding: 16px 16px 12px;
+@media (max-width: 460px) {
+  .card .nav {
+    padding: 18px 16px 12px;
   }
 
-  .card .img {
-    height: 200px;
+  .art-ring img {
+    width: 172px;
+    height: 172px;
   }
 
-  .card .img img {
-    width: 160px;
-    height: 160px;
+  .card .controls .play-btn {
+    width: 56px;
+    height: 56px;
   }
 
-  .card .controls .ctrl-skip {
-    font-size: 1.9rem;
+  .card .controls .play-btn .material-icons {
+    font-size: 1.65rem;
   }
 
-  .card .controls .play {
-    width: 3rem;
-    height: 3rem;
+  .card .controls .ctrl-btn.ctrl-skip .material-icons {
+    font-size: 1.8rem;
   }
 
-  .card .controls .play::before {
-    height: 2.2rem;
-    width: 2.2rem;
+  .card .controls .ctrl-btn {
+    width: 44px;
+    height: 44px;
   }
 
-  .card .controls .play i {
-    font-size: 1.4rem;
+  .card .playlist.visible {
+    max-height: calc(100svh - 140px);
   }
 
-  .card .playlist {
-    max-height: calc(100vh - 200px);
+  .card .progress-wrap input[type="range"]::-webkit-slider-thumb {
+    width: 20px;
+    height: 20px;
   }
 
-  /* Bigger touch targets on mobile */
-  .card .controls .ctrl-icon,
-  .card .nav .nav-icon {
-    min-width: 44px;
-    min-height: 44px;
-  }
-
-  .card .progress input[type="range"]::-webkit-slider-thumb {
-    width: 18px;
-    height: 18px;
-  }
-
-  .card .controls .volume input[type="range"]::-webkit-slider-thumb {
+  .card .volume-row input[type="range"]::-webkit-slider-thumb {
     width: 18px;
     height: 18px;
   }

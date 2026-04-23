@@ -15,11 +15,19 @@ const formatTime = (secs) => {
   return `${m}:${s}`;
 };
 
+const pickRandom = (current, len) => {
+  if (len <= 1) return 0;
+  let next = Math.floor(Math.random() * len);
+  while (next === current) next = Math.floor(Math.random() * len);
+  return next;
+};
+
 const Card = ({ theme, setTheme }) => {
   const audioRef = useRef(null);
   const fileInputRef = useRef(null);
   const isPlayingRef = useRef(false);
   const repeatRef = useRef(false);
+  const shuffleRef = useRef(false);
   const playlistLengthRef = useRef(musics.length);
 
   const [playlist, setPlaylist] = useState(musics);
@@ -28,13 +36,14 @@ const Card = ({ theme, setTheme }) => {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [volume, setVolume] = useState(70);
-  const [showVolume, setShowVolume] = useState(false);
   const [repeat, setRepeat] = useState(false);
+  const [shuffle, setShuffle] = useState(false);
   const [showPlaylist, setShowPlaylist] = useState(false);
 
   // Keep refs in sync with state
   useEffect(() => { isPlayingRef.current = isPlaying; }, [isPlaying]);
   useEffect(() => { repeatRef.current = repeat; }, [repeat]);
+  useEffect(() => { shuffleRef.current = shuffle; }, [shuffle]);
   useEffect(() => { playlistLengthRef.current = playlist.length; }, [playlist]);
 
   // Set up persistent audio event listeners (only once)
@@ -50,6 +59,9 @@ const Card = ({ theme, setTheme }) => {
       if (repeatRef.current) {
         audio.currentTime = 0;
         audio.play().catch(() => {});
+      } else if (shuffleRef.current) {
+        setCurrentIndex((prev) => pickRandom(prev, playlistLengthRef.current));
+        setIsPlaying(true);
       } else {
         setCurrentIndex((prev) => (prev + 1) % playlistLengthRef.current);
         setIsPlaying(true);
@@ -107,7 +119,11 @@ const Card = ({ theme, setTheme }) => {
   }, []);
 
   const handleNext = useCallback(() => {
-    setCurrentIndex((prev) => (prev + 1) % playlistLengthRef.current);
+    if (shuffleRef.current) {
+      setCurrentIndex((prev) => pickRandom(prev, playlistLengthRef.current));
+    } else {
+      setCurrentIndex((prev) => (prev + 1) % playlistLengthRef.current);
+    }
     setIsPlaying(true);
   }, []);
 
@@ -137,6 +153,10 @@ const Card = ({ theme, setTheme }) => {
 
   const toggleRepeat = useCallback(() => {
     setRepeat((prev) => !prev);
+  }, []);
+
+  const toggleShuffle = useCallback(() => {
+    setShuffle((prev) => !prev);
   }, []);
 
   const fileObjectUrlsRef = useRef([]);
@@ -186,23 +206,34 @@ const Card = ({ theme, setTheme }) => {
 
   return (
     <div className="card">
+      {/* Ambient art background */}
+      <div
+        className="art-ambient"
+        style={{ backgroundImage: `url(${currentTrack.thumbnail})` }}
+        aria-hidden="true"
+      />
+
       {/* Navigation bar */}
       <div className="nav">
-        <i
-          className="material-icons nav-icon"
+        <button
+          className="nav-btn"
           onClick={() => setShowPlaylist((s) => !s)}
-          title={showPlaylist ? 'Hide playlist' : 'Show playlist'}
+          title={showPlaylist ? 'Back to player' : 'Show playlist'}
+          aria-label={showPlaylist ? 'Back to player' : 'Show playlist'}
         >
-          {showPlaylist ? 'expand_less' : 'queue_music'}
-        </i>
+          <i className="material-icons">
+            {showPlaylist ? 'arrow_back_ios_new' : 'queue_music'}
+          </i>
+        </button>
         <span className="nav-title">
-          {showPlaylist ? 'Playlist' : `Now playing ${currentIndex + 1} / ${playlist.length}`}
+          {showPlaylist ? 'Your Playlist' : `Now Playing · ${currentIndex + 1} / ${playlist.length}`}
         </span>
         <select
           className="theme-select"
           value={theme}
           onChange={(e) => setTheme(e.target.value)}
           title="Change theme"
+          aria-label="Select theme"
         >
           {THEMES.map((t) => (
             <option key={t.value} value={t.value}>{t.label}</option>
@@ -210,52 +241,60 @@ const Card = ({ theme, setTheme }) => {
         </select>
       </div>
 
-      {/* Playlist view */}
-      {showPlaylist && (
-        <div className="playlist">
-          <ul>
-            {playlist.map((track, idx) => (
-              <li
-                key={track.id}
-                className={`playlist-item${idx === currentIndex ? ' active' : ''}`}
-                onClick={() => handlePlaylistClick(idx)}
-              >
-                <span className="playlist-num">{idx + 1}</span>
-                <div className="playlist-info">
-                  <span className="playlist-title">{track.title}</span>
-                  <span className="playlist-artist">{track.artist}</span>
-                </div>
-                {idx === currentIndex && isPlaying && (
-                  <i className="material-icons playlist-playing">equalizer</i>
-                )}
-                {track.isLocal && (
-                  <i className="material-icons playlist-local" title="Local file">
-                    folder_open
-                  </i>
-                )}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      {/* Playlist view — always in DOM for CSS transition */}
+      <div className={`playlist${showPlaylist ? ' visible' : ''}`} aria-hidden={!showPlaylist}>
+        <ul>
+          {playlist.map((track, idx) => (
+            <li
+              key={track.id}
+              className={`playlist-item${idx === currentIndex ? ' active' : ''}`}
+              onClick={() => handlePlaylistClick(idx)}
+            >
+              <span className="playlist-num">{idx + 1}</span>
+              <img
+                src={track.thumbnail}
+                alt=""
+                className="playlist-thumb"
+              />
+              <div className="playlist-info">
+                <span className="playlist-title">{track.title}</span>
+                <span className="playlist-artist">{track.artist}</span>
+              </div>
+              {idx === currentIndex && isPlaying && (
+                <i className="material-icons playlist-playing">graphic_eq</i>
+              )}
+              {track.isLocal && (
+                <i className="material-icons playlist-local" title="Local file">
+                  folder_open
+                </i>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
 
       {/* Player view */}
       {!showPlaylist && (
-        <>
+        <div className="player-view">
+          {/* Album art */}
           <div className="img">
-            <img
-              src={currentTrack.thumbnail}
-              alt={currentTrack.title}
-              className={isPlaying ? 'spinning' : ''}
-            />
+            <div className={`art-ring${isPlaying ? '' : ' paused'}`}>
+              <img
+                src={currentTrack.thumbnail}
+                alt={currentTrack.title}
+                className={isPlaying ? 'spinning' : ''}
+              />
+            </div>
           </div>
 
+          {/* Track details */}
           <div className="details">
             <p className="title">{currentTrack.title}</p>
             <p className="artist">{currentTrack.artist}</p>
           </div>
 
-          <div className="progress">
+          {/* Progress bar */}
+          <div className="progress-wrap">
             <input
               type="range"
               min={0}
@@ -263,68 +302,86 @@ const Card = ({ theme, setTheme }) => {
               step={0.1}
               value={progressValue}
               onChange={handleSeek}
+              style={{ '--val': `${progressValue}%` }}
+              aria-label="Seek"
             />
           </div>
 
+          {/* Timer */}
           <div className="timer">
             <span>{formatTime(currentTime)}</span>
             <span>{formatTime(duration)}</span>
           </div>
 
+          {/* Controls */}
           <div className="controls">
-            <i
-              className="material-icons ctrl-icon"
-              onClick={toggleRepeat}
-              style={{ color: repeat ? 'var(--accent)' : 'var(--text-secondary)' }}
-              title={repeat ? 'Repeat on' : 'Repeat off'}
+            <button
+              className={`ctrl-btn${shuffle ? ' active' : ''}`}
+              onClick={toggleShuffle}
+              title={shuffle ? 'Shuffle on' : 'Shuffle off'}
+              aria-label="Toggle shuffle"
+              aria-pressed={shuffle}
             >
-              repeat
-            </i>
+              <i className="material-icons">shuffle</i>
+            </button>
 
-            <i
-              className="material-icons ctrl-icon ctrl-skip"
-              id="prev"
+            <button
+              className="ctrl-btn ctrl-skip"
               onClick={handlePrev}
               title="Previous"
+              aria-label="Previous track"
             >
-              skip_previous
-            </i>
+              <i className="material-icons">skip_previous</i>
+            </button>
 
-            <div className="play" onClick={togglePlay} title={isPlaying ? 'Pause' : 'Play'}>
+            <button
+              className="play-btn"
+              onClick={togglePlay}
+              title={isPlaying ? 'Pause' : 'Play'}
+              aria-label={isPlaying ? 'Pause' : 'Play'}
+            >
               <i className="material-icons">{isPlaying ? 'pause' : 'play_arrow'}</i>
-            </div>
+            </button>
 
-            <i
-              className="material-icons ctrl-icon ctrl-skip"
-              id="next"
+            <button
+              className="ctrl-btn ctrl-skip"
               onClick={handleNext}
               title="Next"
+              aria-label="Next track"
             >
-              skip_next
-            </i>
+              <i className="material-icons">skip_next</i>
+            </button>
 
-            <i
-              className="material-icons ctrl-icon"
-              onClick={() => setShowVolume((s) => !s)}
-              title="Volume"
+            <button
+              className={`ctrl-btn${repeat ? ' active' : ''}`}
+              onClick={toggleRepeat}
+              title={repeat ? 'Repeat on' : 'Repeat off'}
+              aria-label="Toggle repeat"
+              aria-pressed={repeat}
             >
-              {volumeIcon}
-            </i>
-
-            <div className={`volume${showVolume ? ' show' : ''}`}>
-              <i className="material-icons">{volumeIcon}</i>
-              <input
-                type="range"
-                min={0}
-                max={100}
-                value={volume}
-                onChange={handleVolumeChange}
-              />
-              <span>{volume}</span>
-            </div>
+              <i className="material-icons">repeat</i>
+            </button>
           </div>
-        </>
+
+          {/* Volume row */}
+          <div className="volume-row">
+            <i className="material-icons vol-icon">{volumeIcon}</i>
+            <input
+              type="range"
+              min={0}
+              max={100}
+              value={volume}
+              onChange={handleVolumeChange}
+              style={{ '--val': `${volume}%` }}
+              aria-label="Volume"
+            />
+            <span className="vol-pct">{volume}%</span>
+          </div>
+        </div>
       )}
+
+      {/* Divider */}
+      <div className="section-divider" />
 
       {/* Upload section */}
       <div className="upload-section">
@@ -332,6 +389,7 @@ const Card = ({ theme, setTheme }) => {
           className="upload-btn"
           onClick={() => fileInputRef.current.click()}
           title="Add local music files"
+          aria-label="Add music files"
         >
           <i className="material-icons">library_add</i>
           <span>Add Music</span>
