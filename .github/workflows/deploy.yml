@@ -4,6 +4,12 @@ on:
   push:
     branches:
       - master
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
 
 permissions:
   contents: write

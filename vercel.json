@@ -1,0 +1,5 @@
+{
+  "buildCommand": "NODE_OPTIONS=--max-old-space-size=6144 GENERATE_SOURCEMAP=false PUBLIC_URL=/ npm run build",
+  "outputDirectory": "build",
+  "framework": "create-react-app"
+}
