@@ -15,6 +15,13 @@ const formatTime = (secs) => {
   return `${m}:${s}`;
 };
 
+const pickRandom = (current, len) => {
+  if (len <= 1) return 0;
+  let next = Math.floor(Math.random() * len);
+  while (next === current) next = Math.floor(Math.random() * len);
+  return next;
+};
+
 const Card = ({ theme, setTheme }) => {
   const audioRef = useRef(null);
   const fileInputRef = useRef(null);
@@ -47,12 +54,6 @@ const Card = ({ theme, setTheme }) => {
     const handleTimeUpdate = () => setCurrentTime(audio.currentTime);
     const handleDurationChange = () => {
       if (!isNaN(audio.duration)) setDuration(audio.duration);
-    };
-    const pickRandom = (prev, len) => {
-      if (len <= 1) return 0;
-      let next = Math.floor(Math.random() * len);
-      while (next === prev) next = Math.floor(Math.random() * len);
-      return next;
     };
     const handleEnded = () => {
       if (repeatRef.current) {
@@ -119,13 +120,7 @@ const Card = ({ theme, setTheme }) => {
 
   const handleNext = useCallback(() => {
     if (shuffleRef.current) {
-      const len = playlistLengthRef.current;
-      setCurrentIndex((prev) => {
-        if (len <= 1) return 0;
-        let next = Math.floor(Math.random() * len);
-        while (next === prev) next = Math.floor(Math.random() * len);
-        return next;
-      });
+      setCurrentIndex((prev) => pickRandom(prev, playlistLengthRef.current));
     } else {
       setCurrentIndex((prev) => (prev + 1) % playlistLengthRef.current);
     }

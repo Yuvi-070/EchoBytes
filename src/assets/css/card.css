@@ -201,6 +201,7 @@
   border-radius: 4px;
   cursor: pointer;
   outline: none;
+  background-color: var(--progress-track);
   background: linear-gradient(
     to right,
     var(--progress-thumb) 0%,
@@ -373,6 +374,7 @@
   border-radius: 3px;
   cursor: pointer;
   outline: none;
+  background-color: var(--progress-track);
   background: linear-gradient(
     to right,
     var(--progress-thumb) 0%,
