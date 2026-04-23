@@ -10,6 +10,7 @@
   isolation: isolate;
   overflow: hidden;
   transition: color 0.45s ease;
+  min-height: 100%;
 }
 
 /* =============================================
@@ -624,7 +625,7 @@
    ============================================= */
 @media (max-width: 460px) {
   .card .nav {
-    padding: 18px 16px 12px;
+    padding: calc(18px + env(safe-area-inset-top)) 16px 12px;
   }
 
   .art-ring img {
@@ -662,6 +663,12 @@
   .card .volume-row input[type="range"]::-webkit-slider-thumb {
     width: 18px;
     height: 18px;
+  }
+}
+
+@media (max-width: 460px) {
+  .card .upload-section {
+    padding-bottom: calc(22px + env(safe-area-inset-bottom));
   }
 }
 

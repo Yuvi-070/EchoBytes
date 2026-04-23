@@ -209,6 +209,10 @@ main {
    RESPONSIVE — MOBILE
    ============================================= */
 @media (max-width: 460px) {
+  body {
+    align-items: stretch;
+  }
+
   .container {
     align-items: flex-start;
     padding: 0;
@@ -216,13 +220,15 @@ main {
 
   main {
     width: 100%;
-    min-height: 100vh;
-    min-height: 100svh;
-    min-height: 100dvh;
+    height: 100vh;
+    height: 100svh;
+    height: 100dvh;
     border-radius: 0;
     border-left: none;
     border-right: none;
     border-top: none;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 }
 
