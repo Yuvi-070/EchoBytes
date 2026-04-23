@@ -11,6 +11,11 @@
   overflow: hidden;
   transition: color 0.45s ease;
   min-height: 100%;
+  padding:
+    env(safe-area-inset-top)
+    env(safe-area-inset-right)
+    env(safe-area-inset-bottom)
+    env(safe-area-inset-left);
 }
 
 /* =============================================
@@ -669,6 +674,44 @@
 @media (max-width: 460px) {
   .card .upload-section {
     padding-bottom: calc(22px + env(safe-area-inset-bottom));
+  }
+}
+
+@media (max-width: 460px) and (max-height: 740px) {
+  .card .nav {
+    padding: calc(14px + env(safe-area-inset-top)) 14px 10px;
+  }
+
+  .card .img {
+    padding: 4px 14px 10px;
+  }
+
+  .card .details {
+    padding: 0 18px 4px;
+  }
+
+  .card .progress-wrap {
+    padding: 10px 18px 0;
+  }
+
+  .card .controls {
+    padding: 10px 10px 0;
+  }
+
+  .card .volume-row {
+    padding: 4px 14px 12px;
+  }
+
+  .section-divider {
+    margin: 0 14px;
+  }
+
+  .card .upload-section {
+    padding: 2px 14px calc(14px + env(safe-area-inset-bottom));
+  }
+
+  .card .upload-btn {
+    padding: 9px 20px;
   }
 }
 
