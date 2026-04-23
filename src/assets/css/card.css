@@ -106,8 +106,8 @@
 }
 
 .theme-select option {
-  background: #1a1a2e;
-  color: #fff;
+  background: var(--select-option-bg);
+  color: var(--select-option-fg);
 }
 
 /* =============================================
@@ -136,8 +136,8 @@
 }
 
 .art-ring img {
-  width: 200px;
-  height: 200px;
+  width: clamp(156px, 46vw, 200px);
+  height: clamp(156px, 46vw, 200px);
   object-fit: cover;
   border-radius: 50%;
   display: block;
@@ -508,7 +508,7 @@
 }
 
 .card .playlist.visible {
-  max-height: 500px;
+  max-height: min(500px, calc(100dvh - 160px));
   opacity: 1;
   overflow-y: auto;
 }
@@ -628,8 +628,8 @@
   }
 
   .art-ring img {
-    width: 172px;
-    height: 172px;
+    width: clamp(148px, 50vw, 184px);
+    height: clamp(148px, 50vw, 184px);
   }
 
   .card .controls .play-btn {
@@ -651,7 +651,7 @@
   }
 
   .card .playlist.visible {
-    max-height: calc(100svh - 140px);
+    max-height: calc(100dvh - 160px);
   }
 
   .card .progress-wrap input[type="range"]::-webkit-slider-thumb {
@@ -662,5 +662,11 @@
   .card .volume-row input[type="range"]::-webkit-slider-thumb {
     width: 18px;
     height: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .art-ring img.spinning {
+    animation: none;
   }
 }
